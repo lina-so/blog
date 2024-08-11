@@ -42,22 +42,60 @@
 
                     <div class="d-flex flex-column align-items-end">
                         <div class="text-end">
-                            @foreach ($post->comments->where('is_visible', true) as $comment)
-                                <div class="mb-2">
+                            {{-- @foreach ($post->comments->where('is_visible', true) as $comment) --}}
+                            @foreach ($post->comments as $comment)
+
+                            <div class="mb-2">
+                                <strong>{{ $comment->author_name }}</strong>
+                                <p>{{ $comment->content }}</p>
+
+                                @if($comment->is_visible)
+                                    <form action="{{ route('comments.hide', $comment->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-sm btn-danger">Hide</button>
+                                    </form>
+
+                                    <form action="{{ route('comments.show', $comment->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-sm btn-success">Show</button>
+                                    </form>
+
+                                    <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                       data-toggle="modal" href="#modaldemo6{{ $comment->id }}" title="حذف">
+                                       <i class="las la-trash"></i>
+                                    </a>
+                                @else
+                                    <p class="text-muted">This comment is hidden.</p>
+                                    <form action="{{ route('comments.show', $comment->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-sm btn-success">Show</button>
+                                    </form>
+                                @endif
+                            </div>
+
+                                {{-- <div class="mb-2">
                                     <strong>{{ $comment->author_name }}</strong>
                                     <p>{{ $comment->content }}</p>
-                                    <a class=" btn btn-sm btn-danger" role="button" aria-pressed="true"
-                                    data-id="{{ $comment->id }}" href="{{ route('comments.show', $comment->id) }}"
-                                    title="show">hide</a>
 
-                                    <a class=" btn btn-sm btn-success" role="button" aria-pressed="true"
-                                    data-id="{{ $comment->id }}" href="{{ route('comments.show', $comment->id) }}"
-                                    title="show">show</a>
+                                    <form action="{{ route('comments.hide', $comment->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-sm btn-danger">Hide</button>
+                                    </form>
+
+                                    <form action="{{ route('comments.show', $comment->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="btn btn-sm btn-success">Show</button>
+                                    </form>
 
                                     <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                     data-toggle="modal" href="#modaldemo6{{ $comment->id }}" title="حذف"><i
                                         class="las la-trash"></i></a>
-                                </div>
+                                </div> --}}
 
                                      <!-- delete -->
                                      <div class="modal" id="modaldemo6{{ $comment->id }}">

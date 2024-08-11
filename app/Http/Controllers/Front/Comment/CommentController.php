@@ -36,14 +36,27 @@ class CommentController extends Controller
 
         return redirect()->back()->with('success','comment added successfully');
     }
+
     /**
-     * Display the specified resource.
+     * hide , show the specified resource.
      */
-    public function show(string $id)
+    public function hideComment(Comment $comment)
     {
-        //
+        // $comment = Comment::findOrFail($comment);
+        $comment->is_visible = false;
+        $comment->save();
+
+        return back()->with('error', 'Comment hidden successfully.');
     }
 
+    public function showComment(Comment $comment)
+    {
+        // $comment = Comment::findOrFail($comment);
+        $comment->is_visible = true;
+        $comment->save();
+
+        return back()->with('success', 'Comment shown successfully.');
+    }
     /**
      * Show the form for editing the specified resource.
      */
@@ -59,6 +72,8 @@ class CommentController extends Controller
     {
         //
     }
+
+
 
     /**
      * Remove the specified resource from storage.
