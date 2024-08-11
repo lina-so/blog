@@ -21,11 +21,7 @@ class UserController extends Controller
         return view('pages.users.index',compact('users','user'));
     }
 
-    public function profile()
-    {
-        return view('pages.Profile.profile');
-    }
-
+    
     public function userPost(Post $post)
     {
         return view('pages.users.post',compact('post'));

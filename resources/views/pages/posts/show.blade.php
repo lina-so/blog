@@ -108,24 +108,7 @@
                         </div>
                     </div>
 
-                    <div class="">
-                        <div class="accor bg-primary" id="headingOne1">
-                            <h4 class="m-0">
-                                <a href="#collapseOne1" class="" data-toggle="collapse" aria-expanded="true" aria-controls="collapseOne">
-                                   Comments <i class="si si-cursor-move ml-2"></i>
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseOne1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                            @foreach ($post->comments as  $comment)
-                            <div class="border p-3">
-                                {{ $comment->content }}
-                            </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-
+             
                 </div>
             </div>
         </div>

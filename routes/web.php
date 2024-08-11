@@ -19,7 +19,6 @@ Route::resource('dashboard/users', UserController::class);
 
 
 Route::put('dashboard/post/blog/{post}',[PostController::class,'updateBlog'])->name('updateBlog');
-Route::get('/user/profile', [UserController::class, 'profile'])->name('profile');
 Route::get('/user/post/{post}', [UserController::class, 'userPost'])->name('userPost');
 
 Route::put('comments/{comment}/hide', [CommentController::class, 'hideComment'])->name('comments.hide');
